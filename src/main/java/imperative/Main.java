@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import static imperative.Main.Gender.*;
+
 /**
  * @author Mohammed Amr
  * @created 14/12/2020 - 16:38
@@ -15,11 +17,11 @@ public class Main {
     public static void main(String[] args) {
 
         List<Person> people = List.of(
-                new Person("John", Gender.MALE),
-                new Person("Maria", Gender.FEMALE),
-                new Person("Aisha", Gender.FEMALE),
-                new Person("Alex", Gender.MALE),
-                new Person("Alice", Gender.FEMALE)
+                new Person("John", MALE),
+                new Person("Maria", FEMALE),
+                new Person("Aisha", FEMALE),
+                new Person("Alex", MALE),
+                new Person("Alice", FEMALE)
         );
 
         // START - Imperative Approach
@@ -27,7 +29,7 @@ public class Main {
         List<Person> females = new ArrayList<>();
 
         for (Person person : people) {
-            if (Gender.FEMALE.equals(person.gender)) {
+            if (FEMALE.equals(person.gender)) {
                 females.add(person);
             }
         }
@@ -41,7 +43,7 @@ public class Main {
         System.out.println("// Declarative approach!");
 
         // Predicate
-        Predicate<Person> personPredicate = person -> Gender.FEMALE.equals(person.gender);
+        Predicate<Person> personPredicate = person -> FEMALE.equals(person.gender);
 
         List<Person> females2 = people.stream()
                 .filter(personPredicate)
