@@ -20,7 +20,22 @@ public class _Predicate {
         System.out.println(isPhoneNumberValidPredicate.test("07000000000"));
         System.out.println(isPhoneNumberValidPredicate.test("0700000000"));
         System.out.println(isPhoneNumberValidPredicate.test("090009800000"));
-        
+
+        System.out.println("Chaining Predicates!");
+        System.out.println(
+                "Is phone number 090009800000 valid and contains number 3 = " +
+                isPhoneNumberValidPredicate.and(containsNumber3Predicate).test("090009800000")
+        );
+
+        System.out.println(
+                "Is phone number 07000000003 valid and contains number 3 = " +
+                        isPhoneNumberValidPredicate.and(containsNumber3Predicate).test("07000000003")
+        );
+
+        System.out.println(
+                "Is phone number 07000000000 valid and contains number 3 = " +
+                        isPhoneNumberValidPredicate.or(containsNumber3Predicate).test("07000000000")
+        );
     }
 
     static boolean isPhoneNumberValid(String phoneNumber) {
