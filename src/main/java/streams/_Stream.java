@@ -1,10 +1,7 @@
 package streams;
 
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.IntConsumer;
-import java.util.function.ToIntFunction;
+import java.util.function.*;
 import java.util.stream.Collectors;
 
 import static streams._Stream.Gender.*;
@@ -43,6 +40,22 @@ public class _Stream {
                 .map(person -> person.name)
                 .mapToInt(name -> name.length())
                 .forEach(System.out::println);
+
+        Predicate<Person> personFemaleGenderPredicate = person -> FEMALE.equals(person.gender);
+        Predicate<Person> personPreferNotToSayGenderPredicate = person -> PREFER_NOT_TO_SAY.equals(person.gender);
+
+        boolean containsOnlyFemales = people.stream()
+                .allMatch(personFemaleGenderPredicate);
+
+        boolean containsAnyFemales = people.stream()
+                .anyMatch(personFemaleGenderPredicate);
+
+        boolean containsPreferNotToSay = people.stream()
+                .noneMatch(personPreferNotToSayGenderPredicate);
+
+        System.out.println(containsOnlyFemales);
+        System.out.println(containsAnyFemales);
+        System.out.println(containsPreferNotToSay);
     }
 
     static class Person {
@@ -65,6 +78,6 @@ public class _Stream {
     }
 
     enum Gender {
-        MALE, FEMALE
+        MALE, FEMALE, PREFER_NOT_TO_SAY
     }
 }
