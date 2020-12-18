@@ -7,7 +7,7 @@ import java.util.function.Consumer;
  * @created 17/12/2020 - 22:59
  * @project javafunctional
  */
-public class Main {
+public class Callbacks {
 
     public static void main(String[] args) {
 
